@@ -1,5 +1,6 @@
 const overview = document.querySelector(".overview"); // where profile info appears
 const username = "labmandala";
+const repoList = document.querySelector(".repo-list"); // select ul to display repos list
 
 const gitUserInfo = async function () {
   const userInfo = await fetch(`https://api.github.com/users/${username}`);
@@ -24,4 +25,11 @@ const displayUserInfo = function (data) {
     </div>
   `;
   overview.append(div);
+};
+
+// parameters to sort by recent & show up to 100 repos
+const gitRepos = async function () {
+  const fetchRepos = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+  const repoData = await fetchRepos.json();
+  displayRepos(repoData);
 };
