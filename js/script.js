@@ -33,3 +33,15 @@ const gitRepos = async function () {
   const repoData = await fetchRepos.json();
   displayRepos(repoData);
 };
+
+// display information about each repo
+// fx accepts data returned from last API call
+// loop and create list item for each repo, add features
+const displayRepos = function (repos) {
+  for (const repo of repos) {
+    const repoItem = document.createElement("li");
+    repoItem.classList.add("repo");
+    repoItem.innerHTML = `<h3>${repo.name}</h3>`;
+    repoList.append(repoItem); // append list item to variable selecting ul
+  }
+};
